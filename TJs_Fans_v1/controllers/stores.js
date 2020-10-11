@@ -1,3 +1,5 @@
+const Store = require('../models/Store');
+
 // @desc    Get all stores
 // @route   GET /api/v1/stores
 // @access  Public
@@ -19,10 +21,17 @@ exports.getStore = (req, res, next) => {
 // @desc    Create new Store
 // @route   POST /api/v1/stores
 // @access  Private
-exports.createStore = (req, res, next) => {
-    res
-        .status(200)
-        .json({ success: true, msg: 'Create new store' });
+exports.createStore = async (req, res, next) => {
+    try {
+        const store = await Store.create(req.body);
+
+        res.status(201).json({
+            success: true,
+            data: store
+        });
+    } catch (err) {
+        res.status(400).json({ success: false });
+    }
 };
 
 // @desc    Update Store
