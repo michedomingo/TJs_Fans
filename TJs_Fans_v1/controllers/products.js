@@ -34,10 +34,10 @@ exports.updateProduct = (req, res, next) => {
         .json({ success: true, msg: `Update product ${req.params.id}` });
 };
 
-// @desc    Delate Product
+// @desc    Delete Product
 // @route   POST /api/v1/products/:id
 // @access  Private
-exports.deleateProduct = (req, res, next) => {
+exports.deleteProduct = (req, res, next) => {
     res
         .status(200)
         .json({ success: true, msg: `Delete product ${req.params.id}` });

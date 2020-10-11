@@ -12,6 +12,7 @@ connectDB();
 
 // Route files
 const products = require('./routes/products');
+const stores = require('./routes/stores');
 
 const app = express();
 
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Mount routers
 app.use('/api/v1/products', products);
+app.use('/api/v1/stores', stores);
 
 const PORT = process.env.PORT || 3000;
 
