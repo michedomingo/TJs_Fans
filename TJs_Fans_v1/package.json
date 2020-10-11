@@ -1,0 +1,16 @@
+{
+  "name": "tjs_fans_v1",
+  "version": "1.0.0",
+  "description": "TJ's Fans v1",
+  "main": "server.js",
+  "scripts": {
+    "start": "NODE_ENV=production node server",
+    "dev": "nodemon server"
+  },
+  "author": "Michelle Domingo",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}
