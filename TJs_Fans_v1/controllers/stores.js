@@ -3,19 +3,31 @@ const Store = require('../models/Store');
 // @desc    Get all stores
 // @route   GET /api/v1/stores
 // @access  Public
-exports.getStores = (req, res, next) => {
-    res
-        .status(200)
-        .json({ success: true, msg: 'Show all stores' });
+exports.getStores = async (req, res, next) => {
+    try {
+        const stores = await Store.find();
+
+        res.status(200).json({ success: true, data: stores })
+    } catch (err) {
+        res.staus(400).json({ success: false });
+    }
 };
 
 // @desc    Get single Store
 // @route   GET /api/v1/stores/:id
 // @access  Public
-exports.getStore = (req, res, next) => {
-    res
-        .status(200)
-        .json({ success: true, msg: `Show store ${req.params.id}` });
+exports.getStore = async (req, res, next) => {
+    try {
+        const store = await Store.findById(req.params.id);
+
+        if(!store) {
+            return res.status(400).json({ success: false });
+        }
+
+        res.status(200).json({ success: true, data: store })
+    } catch (err) {
+        res.staus(400).json({ success: false });
+    }
 };
 
 // @desc    Create new Store
