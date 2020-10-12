@@ -26,7 +26,8 @@ exports.getStore = async (req, res, next) => {
 
         res.status(200).json({ success: true, data: store })
     } catch (err) {
-        res.staus(400).json({ success: false });
+        // res.staus(400).json({ success: false });
+        next(err);
     }
 };
 
