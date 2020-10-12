@@ -10,7 +10,7 @@ exports.getStores = async (req, res, next) => {
 
     res.status(200).json({ success: true, count: stores.length, data: stores });
   } catch (err) {
-    res.staus(400).json({ success: false });
+    next(err);
   }
 };
 
@@ -23,13 +23,13 @@ exports.getStore = async (req, res, next) => {
 
     if (!store) {
       return next(
-        new ErrorResponse(`Store not found with is of ${req.params.id}`, 404)
+        new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404)
       );
     }
 
     res.status(200).json({ success: true, data: store });
   } catch (err) {
-    next(new ErrorResponse(`Store not found with id of ${req.params.id}`, 404));
+    next(err);
   }
 };
 
@@ -45,7 +45,7 @@ exports.createStore = async (req, res, next) => {
       data: store,
     });
   } catch (err) {
-    res.status(400).json({ success: false });
+    next(err);
   }
 };
 
@@ -60,12 +60,14 @@ exports.updateStore = async (req, res, next) => {
     });
 
     if (!store) {
-      return res.status(400).json({ success: false });
+      return next(
+        new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404)
+      );
     }
 
     res.status(200).json({ success: true, data: store });
   } catch (err) {
-    res.status(400).json({ success: false });
+    next(err);
   }
 };
 
@@ -77,11 +79,13 @@ exports.deleteStore = async (req, res, next) => {
     const store = await Store.findByIdAndDelete(req.params.id);
 
     if (!store) {
-      return res.status(400).json({ success: false });
+      return next(
+        new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404)
+      );
     }
 
     res.status(200).json({ success: true, data: {} });
   } catch (err) {
-    res.status(400).json({ success: false });
+    next(err);
   }
 };
