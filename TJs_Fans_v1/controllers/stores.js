@@ -1,6 +1,7 @@
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const Store = require("../models/Store");
+const geocoder = require("../utils/geocoder");
 
 // @desc    Get all stores
 // @route   GET /api/v1/stores
@@ -69,4 +70,31 @@ exports.deleteStore = asyncHandler(async (req, res, next) => {
   }
 
   res.status(200).json({ success: true, data: {} });
+});
+
+// @desc    Get stores within a radius
+// @route   GET /api/v1/stores/radius/:zipcode/:distance
+// @access  Private
+exports.getStoresInRadius = asyncHandler(async (req, res, next) => {
+  const { zipcode, distance } = req.params;
+
+  // Get lat/lng from geocode
+  const loc = await geocoder.geocode(zipcode);
+  const lat = loc[0].latitude;
+  const lng = loc[0].longitude;
+
+  // Calc radius using radians (unit measurement for spheres)
+  // Divide distance by radius of Earth
+  // Earth Radius = 3,963 miles / 6,378 km
+  const radius = distance / 3963;
+
+  const stores = await Store.find({
+    location: { $geoWithin: { $centerSphere: [[lng, lat], radius] } },
+  });
+
+  res.status(200).json({
+    success: true,
+    count: stores.length,
+    data: stores,
+  });
 });
