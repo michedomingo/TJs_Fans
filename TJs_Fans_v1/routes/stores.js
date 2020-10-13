@@ -8,7 +8,13 @@ const {
   getStoresInRadius,
 } = require("../controllers/stores");
 
+// Include other resource routers
+const productRouter = require("./products");
+
 const router = express.Router();
+
+// Re-route into other resource routers
+router.use("/:bootcampId/products", productRouter);
 
 router.route("/radius/:zipcode/:distance").get(getStoresInRadius);
 

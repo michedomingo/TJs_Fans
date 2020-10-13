@@ -1,21 +1,20 @@
-const express = require('express')
+const express = require("express");
 const {
-    getProducts,
-    getProduct,
-    createProduct,
-    updateProduct,
-    deleteProduct
-} = require('../controllers/products');
+  getProducts,
+  // getProduct,
+  // createProduct,
+  // updateProduct,
+  // deleteProduct
+} = require("../controllers/products");
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
-router.route('/')
-    .get(getProducts)
-    .post(createProduct);
+router.route("/").get(getProducts);
+// .post(createProduct);
 
-router.route('/:id')
-    .get(getProduct)
-    .put(updateProduct)
-    .delete(deleteProduct);
+// router.route('/:id')
+//     .get(getProduct)
+//     .put(updateProduct)
+//     .delete(deleteProduct);
 
 module.exports = router;
