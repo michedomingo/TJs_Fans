@@ -1,6 +1,6 @@
 [
 	{
-		"name": "Trader Joe's San Francisco - Pacific Place (225)",
+		"storeName": "Trader Joe's San Francisco - Pacific Place (225)",
 		"website": "https://locations.traderjoes.com/ca/san-francisco/225/",
 		"phone": "415-536-7801",
 		"address": "10 4th Street San Francisco, CA 94103",
@@ -9,7 +9,7 @@
         "description": "At Trader Joe’s, we see ourselves as your neighborhood grocery store."
     },
     {
-		"name": "Trader Joe's San Francisco - Nob Hill (200)",
+		"storeName": "Trader Joe's San Francisco - Nob Hill (200)",
 		"website": "https://locations.traderjoes.com/ca/san-francisco/200/",
 		"phone": "415-292-7665",
 		"address": "1095 Hyde St San Francisco, CA 94109",
@@ -19,7 +19,7 @@
     },
 
 	{
-		"name": "Trader Joe's San Francisco - North Beach (19)",
+		"storeName": "Trader Joe's San Francisco - North Beach (19)",
 		"website": "https://locations.traderjoes.com/ca/san-francisco/19/",
 		"phone": "415-351-1013",
 		"address": "401 Bay St San Francisco, CA 94133",
@@ -28,7 +28,7 @@
         "description": "At Trader Joe’s, we see ourselves as your neighborhood grocery store."
 	},
 	{
-		"name": "Trader Joe's San Francisco (100)",
+		"storeName": "Trader Joe's San Francisco (100)",
 		"website": "https://locations.traderjoes.com/ca/san-francisco/100/",
 		"phone": "415-346-9964",
 		"address": "3 Masonic Ave San Francisco, CA 9411",

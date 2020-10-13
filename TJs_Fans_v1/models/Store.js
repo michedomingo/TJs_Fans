@@ -3,7 +3,7 @@ const slugify = require("slugify");
 const geocoder = require("../utils/geocoder");
 
 const StoreSchema = new mongoose.Schema({
-  name: {
+  storeName: {
     type: String,
     required: [true, "Please add a name"],
     unique: true,
@@ -85,9 +85,9 @@ const StoreSchema = new mongoose.Schema({
   },
 });
 
-// Create store slug from the name
+// Create store slug from store name
 StoreSchema.pre("save", function (next) {
-  this.slug = slugify(this.name, { lower: true });
+  this.slug = slugify(this.storeName, { lower: true });
   next();
 });
 
@@ -104,10 +104,10 @@ StoreSchema.pre("save", async function (next) {
     zipcode: loc[0].zipcode,
     country: loc[0].countryCode,
   };
+
+  // Do not save address in DB
+  this.address = undefined;
   next();
 });
-
-// Do not save address in DB
-this.address = undefined;
 
 module.exports = mongoose.model("Store", StoreSchema);
