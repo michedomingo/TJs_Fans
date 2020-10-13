@@ -14,7 +14,7 @@ const productRouter = require("./products");
 const router = express.Router();
 
 // Re-route into other resource routers
-router.use("/:bootcampId/products", productRouter);
+router.use("/:storeId/products", productRouter);
 
 router.route("/radius/:zipcode/:distance").get(getStoresInRadius);
 

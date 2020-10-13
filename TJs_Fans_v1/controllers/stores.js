@@ -7,7 +7,18 @@ const geocoder = require("../utils/geocoder");
 // @route   GET /api/v1/stores
 // @access  Public
 exports.getStores = asyncHandler(async (req, res, next) => {
-  const stores = await Store.find();
+  let query;
+
+  let queryStr = JSON.stringify(req.query);
+
+  queryStr = queryStr.replace(
+    /\b(gt|gte|lt|lte|in)\b/g,
+    (match) => `$${match}`
+  );
+
+  query = Store.find(JSON.parse(queryStr));
+
+  const stores = await query;
 
   res.status(200).json({ success: true, count: stores.length, data: stores });
 });
