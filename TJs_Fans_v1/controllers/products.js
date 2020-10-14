@@ -1,6 +1,7 @@
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const Product = require("../models/Product");
+const { populate } = require("../models/Product");
 
 // @desc    Get all products
 // @route   GET /api/v1/products
@@ -13,7 +14,7 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
   if (req.params.storeId) {
     query = Product.find({ store: req.params.storeId });
   } else {
-    query = Product.find();
+    query = Product.find().populate("store");
   }
 
   const products = await query;
