@@ -1,7 +1,7 @@
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const Product = require("../models/Product");
-const { populate } = require("../models/Product");
+const Store = require("../models/Store");
 
 // @desc    Get all Products
 // @route   GET /api/v1/products
@@ -44,6 +44,29 @@ exports.getProduct = asyncHandler(async (req, res, next) => {
       404
     );
   }
+
+  res.status(200).json({
+    success: true,
+    data: product,
+  });
+});
+
+// @desc    Add product
+// @route   POST /api/v1/stores/:storeId/products
+// @access  Private
+exports.addProduct = asyncHandler(async (req, res, next) => {
+  req.body.store = req.params.storeId;
+
+  const store = await Store.findById(req.params.storeId);
+
+  if (!store) {
+    return next(
+      new ErrorResponse(`No store with the id of ${req.params.storeId}`),
+      404
+    );
+  }
+
+  const product = await Product.create(req.body);
 
   res.status(200).json({
     success: true,
