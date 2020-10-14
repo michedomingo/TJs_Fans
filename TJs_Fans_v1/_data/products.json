@@ -1,67 +1,72 @@
 [
 	{
+        "_id": "5d725a4a7b292f5f8ceff789",
 		"productName": "Cinnamon Bun Cookies",
-		"priceAvg": "299",
+        "store": "5f8532d110c90b77d09f66c4",
+        "user": "tbd",
+        "priceAvg": 299,
 		"ingredients": "tbd",
 		"productLabel": ["Dairy Free"],
         "dairyFree": true,
         "glutenFree": false,
         "vegan": false,
         "vegetarian": false,
-        "organic": false,
-        "store": "5f8532d110c90b77d09f66c4",
-        "user": "tbd"
+        "organic": false
     },
     {
+        "_id": "5d725c84c4ded7bcb480eaa0",
 		"productName": "Fall Leaf Corn Tortilla Chips",
-		"priceAvg": "399",
+        "store": "5f8532d110c90b77d09f66c4",
+        "user": "tbd",
+        "priceAvg": 399,
 		"ingredients": "tbd",
 		"productLabel": ["Dairy Free", "Gluten Free"],
         "dairyFree": true,
         "glutenFree": false,
         "vegan": false,
         "vegetarian": false,
-        "organic": false,
-        "store": "5f8532d110c90b77d09f66c4",
-        "user": "tbd"
+        "organic": false
     },
 	{
+        "_id": "5d725cb9c4ded7bcb480eaa1",
 		"productName": "Maple & Sea Salt Kettle Corn",
-		"priceAvg": "199",
+        "store": "5f8532d110c90b77d09f66c3",
+        "user": "tbd",
+		"priceAvg": 199,
 		"ingredients": "tbd",
 		"productLabel": ["Vegetarian", "Organic"],
         "dairyFree": true,
         "glutenFree": false,
         "vegan": false,
         "vegetarian": false,
-        "organic": false,
-        "store": "5f8532d110c90b77d09f66c3",
-        "user": "tbd"
+        "organic": false
 	},
 	{
+        "_id": "5d725cd2c4ded7bcb480eaa2",
 		"productName": "Organic Naan Garlic Crackers",
-		"priceAvg": "379",
+        "store": "5f8532d110c90b77d09f66c3",
+        "user": "tbd",
+		"priceAvg": 379,
 		"ingredients": "tbd",
 		"productLabel": ["Gluten Free"],
         "dairyFree": true,
         "glutenFree": false,
         "vegan": false,
         "vegetarian": false,
-        "organic": false,
-        "store": "5f8532d110c90b77d09f66c3",
-        "user": "tbd"
+        "organic": false
     },
     {
+        "_id": "5d725ce8c4ded7bcb480eaa3",
 		"productName": "TRADER JOE'S, SEASONED KALE CHIPS",
-		"priceAvg": "499",
-		"ingredients": "KALE, CASHEWS, TAHINI (GROUND SESAME SEEDS), CARROT POWDER, ONION POWDER, CANE SUGAR, LEMON JUICE CONCENTRATE, MUSTARD POWDER, SALT GARLIC POWDER.",
-		"productLabel": ["Vegan", "Vegetarian"],
+        "store": "5f8532d110c90b77d09f66c3",
+        "user": "tbd",
+		"priceAvg": 499,
+        "ingredients": "KALE, CASHEWS, TAHINI (GROUND SESAME SEEDS), CARROT POWDER, ONION POWDER, CANE SUGAR, LEMON JUICE CONCENTRATE, MUSTARD POWDER, SALT GARLIC POWDER.",
+        "productLabel": ["Vegan", "Vegetarian"],
         "dairyFree": true,
         "glutenFree": false,
         "vegan": false,
         "vegetarian": false,
-        "organic": false,
-        "store": "5f8532d110c90b77d09f66c3",
-        "user": "tbd"
+        "organic": false
 	}
 ]

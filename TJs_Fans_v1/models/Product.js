@@ -1,30 +1,26 @@
 const mongoose = require("mongoose");
-const slugify = require("slugify");
 
 const ProductSchema = new mongoose.Schema({
   productName: {
     type: String,
-    required: [true, "Please add a product name"],
-    unique: true,
     trim: true,
-    maxlength: [50, "Name can not be more than 50 characters"],
+    required: [true, "Please add a product name"],
   },
-  slug: String,
-  priceAvg: {
-    type: Number,
-    required: [false, "Please add a product cost"],
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
-  ingredients: {
-    type: String,
-    required: [false, "Please add ingredients"],
+  store: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Store",
+    required: true,
   },
-  nutritionFacts: {
-    type: String,
-    required: [false, "Please add nutritional facts"],
-  },
+  priceAvg: Number,
+  ingredients: String,
+  nutritionFacts: String,
   productLabel: {
-    type: String,
-    required: [false, "Please select label(s)"],
+    // Array of strings
+    type: [String],
     enum: ["Dairy Free", "Gluten Free", "Vegan", "Vegetarian", "Organic"],
   },
   dairyFree: {
@@ -47,21 +43,6 @@ const ProductSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  store: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Store",
-    required: true,
-  },
-});
-
-// Create product slug from product name
-ProductSchema.pre("save", function (next) {
-  this.slug = slugify(this.productName, { lower: true });
-  next();
 });
 
 module.exports = mongoose.model("Product", ProductSchema);

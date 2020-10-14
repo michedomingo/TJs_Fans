@@ -85,11 +85,11 @@ const StoreSchema = new mongoose.Schema(
       maxlength: [500, "Description can not be more than 500 characters"],
     },
     storeReviewAvg: Number,
-  },
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
   }
+  //   {
+  //     toJSON: { virtuals: true },
+  //     toObject: { virtuals: true },
+  //   }
 );
 
 // Create store slug from store name
@@ -118,11 +118,11 @@ StoreSchema.pre("save", async function (next) {
 });
 
 // Reverse populate with virtuals
-StoreSchema.virtual("products", {
-  ref: "Product",
-  localField: "_id",
-  foreignField: "store",
-  justOne: false,
-});
+// StoreSchema.virtual("products", {
+//   ref: "Product",
+//   localField: "_id",
+//   foreignField: "store",
+//   justOne: false,
+// });
 
 module.exports = mongoose.model("Store", StoreSchema);

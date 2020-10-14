@@ -13,7 +13,10 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
   if (req.params.storeID) {
     query = Product.find({ store: req.params.storeID });
   } else {
-    query = Product.find();
+    query = Product.find({
+      path: "store",
+      select: "storeName description",
+    });
   }
 
   const products = await query;
