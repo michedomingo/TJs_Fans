@@ -3,7 +3,7 @@ const asyncHandler = require("../middleware/async");
 const Product = require("../models/Product");
 const { populate } = require("../models/Product");
 
-// @desc    Get all products
+// @desc    Get all Products
 // @route   GET /api/v1/products
 // @route   GET /api/v1/stores/:storeId/products
 // @access  Public
@@ -32,9 +32,24 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
 // // @desc    Get single Product
 // // @route   GET /api/v1/products/:id
 // // @access  Public
-// exports.getProduct = (req, res, next) => {
-//   res.status(200).json({ success: true, msg: `Show product ${req.params.id}` });
-// };
+exports.getProduct = asyncHandler(async (req, res, next) => {
+  const product = await Product.findById(req.params.id).populate({
+    path: "store",
+    select: "storeName description",
+  });
+
+  if (!product) {
+    return next(
+      new ErrorResponse(`No product with the id of ${req.params.id}`),
+      404
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    data: product,
+  });
+});
 
 // // @desc    Create new Product
 // // @route   POST /api/v1/products
