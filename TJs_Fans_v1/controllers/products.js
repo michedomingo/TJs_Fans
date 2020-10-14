@@ -10,13 +10,10 @@ const Product = require("../models/Product");
 exports.getProducts = asyncHandler(async (req, res, next) => {
   let query;
 
-  if (req.params.storeID) {
-    query = Product.find({ store: req.params.storeID });
+  if (req.params.storeId) {
+    query = Product.find({ store: req.params.storeId });
   } else {
-    query = Product.find({
-      path: "store",
-      select: "storeName description",
-    });
+    query = Product.find();
   }
 
   const products = await query;
