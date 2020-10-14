@@ -85,11 +85,11 @@ const StoreSchema = new mongoose.Schema(
       maxlength: [500, "Description can not be more than 500 characters"],
     },
     storeReviewAvg: Number,
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
-  //   {
-  //     toJSON: { virtuals: true },
-  //     toObject: { virtuals: true },
-  //   }
 );
 
 // Create store slug from store name
@@ -117,12 +117,19 @@ StoreSchema.pre("save", async function (next) {
   next();
 });
 
+// Cascade delete products when a store is deleted
+StoreSchema.pre("remove", async function (next) {
+  console.log(`Products being removed from store ${this._id}`);
+  await this.model("Product").deleteMany({ store: this._id });
+  next();
+});
+
 // Reverse populate with virtuals
-// StoreSchema.virtual("products", {
-//   ref: "Product",
-//   localField: "_id",
-//   foreignField: "store",
-//   justOne: false,
-// });
+StoreSchema.virtual("products", {
+  ref: "Product",
+  localField: "_id",
+  foreignField: "store",
+  justOne: false,
+});
 
 module.exports = mongoose.model("Store", StoreSchema);
