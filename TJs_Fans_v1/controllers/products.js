@@ -74,12 +74,29 @@ exports.addProduct = asyncHandler(async (req, res, next) => {
   });
 });
 
-// // @desc    Create new Product
-// // @route   POST /api/v1/products
-// // @access  Private
-// exports.createProduct = (req, res, next) => {
-//   res.status(200).json({ success: true, msg: "Create new product" });
-// };
+// @desc    Update product
+// @route   PUT /api/v1/products/:id
+// @access  Private
+exports.updateProduct = asyncHandler(async (req, res, next) => {
+  let product = await Product.findById(req.params.id);
+
+  if (!product) {
+    return next(
+      new ErrorResponse(`No product with the id of ${req.params.id}`),
+      404
+    );
+  }
+
+  product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(200).json({
+    success: true,
+    data: product,
+  });
+});
 
 // // @desc    Update Product
 // // @route   POST /api/v1/products/:id
