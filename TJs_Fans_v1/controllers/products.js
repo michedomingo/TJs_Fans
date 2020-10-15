@@ -98,20 +98,23 @@ exports.updateProduct = asyncHandler(async (req, res, next) => {
   });
 });
 
-// // @desc    Update Product
-// // @route   POST /api/v1/products/:id
-// // @access  Private
-// exports.updateProduct = (req, res, next) => {
-//   res
-//     .status(200)
-//     .json({ success: true, msg: `Update product ${req.params.id}` });
-// };
+// @desc    Delete product
+// @route   DELETE /api/v1/products/:id
+// @access  Private
+exports.deleteProduct = asyncHandler(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
 
-// // @desc    Delete Product
-// // @route   POST /api/v1/products/:id
-// // @access  Private
-// exports.deleteProduct = (req, res, next) => {
-//   res
-//     .status(200)
-//     .json({ success: true, msg: `Delete product ${req.params.id}` });
-// };
+  if (!product) {
+    return next(
+      new ErrorResponse(`No product with the id of ${req.params.id}`),
+      404
+    );
+  }
+
+  await product.remove();
+
+  res.status(200).json({
+    success: true,
+    data: {},
+  });
+});

@@ -106,7 +106,7 @@ exports.createStore = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Update Store
-// @route   POST /api/v1/stores/:id
+// @route   PUT /api/v1/stores/:id
 // @access  Private
 exports.updateStore = asyncHandler(async (req, res, next) => {
   const store = await Store.findByIdAndUpdate(req.params.id, req.body, {
@@ -124,7 +124,7 @@ exports.updateStore = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Delete Store
-// @route   POST /api/v1/stores/:id
+// @route   DELETE /api/v1/stores/:id
 // @access  Private
 exports.deleteStore = asyncHandler(async (req, res, next) => {
   const store = await Store.findById(req.params.id);
