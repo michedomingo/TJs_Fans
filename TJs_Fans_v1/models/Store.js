@@ -85,6 +85,7 @@ const StoreSchema = new mongoose.Schema(
       maxlength: [500, "Description can not be more than 500 characters"],
     },
     storeReviewAvg: Number,
+    averageCost: Number,
   },
   {
     toJSON: { virtuals: true },

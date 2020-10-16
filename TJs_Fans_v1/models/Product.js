@@ -15,7 +15,10 @@ const ProductSchema = new mongoose.Schema({
     ref: "Store",
     required: true,
   },
-  priceAvg: Number,
+  priceAvg: {
+    type: Number,
+    required: [true, "Please add product avg cost"],
+  },
   ingredients: String,
   nutritionFacts: String,
   productLabel: {
@@ -43,6 +46,39 @@ const ProductSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+});
+
+// Static method to get avg of product price avg
+ProductSchema.statics.getAverageCost = async function (storeId) {
+  const obj = await this.aggregate([
+    {
+      $match: { store: storeId },
+    },
+    {
+      $group: {
+        _id: "$store",
+        averageCost: { $avg: "$priceAvg" },
+      },
+    },
+  ]);
+
+  try {
+    await this.model("Store").findByIdAndUpdate(storeId, {
+      averageCost: Math.ceil(obj[0].averageCost / 10) * 10,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Call getAverageCost after save
+ProductSchema.post("save", function () {
+  this.constructor.getAverageCost(this.store);
+});
+
+// Call getAverageCost before remove
+ProductSchema.pre("remove", function () {
+  this.constructor.getAverageCost(this.store);
 });
 
 module.exports = mongoose.model("Product", ProductSchema);

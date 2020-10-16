@@ -8,8 +8,7 @@
 		"address": "10 4th Street San Francisco, CA 94103",
 		"alcohol": ["Beer", "Wine", "Liquor"],
         "email": "225@traderjoes.com",
-        "description": "At Trader Joe’s, we see ourselves as your neighborhood grocery store.",
-        "storeReviewAvg": 7
+        "description": "At Trader Joe’s, we see ourselves as your neighborhood grocery store."
     },
     {
         "_id": "5f8532d110c90b77d09f66c4",
@@ -20,8 +19,7 @@
 		"address": "1095 Hyde St San Francisco, CA 94109",
 		"alcohol": ["Beer", "Wine", "Liquor"],
         "email": "200@traderjoes.com",
-        "description": "At Trader Joe’s, we see ourselves as your neighborhood grocery store.",
-        "storeReviewAvg": 8
+        "description": "At Trader Joe’s, we see ourselves as your neighborhood grocery store."
     },
 	{
         "_id": "5f8532d110c90b77d09f66c5",
@@ -32,8 +30,7 @@
 		"address": "401 Bay St San Francisco, CA 94133",
 		"alcohol": ["Beer", "Wine", "Liquor"],
         "email": "19@traderjoes.com",
-        "description": "At Trader Joe’s, we see ourselves as your neighborhood grocery store.",
-        "storeReviewAvg": 9
+        "description": "At Trader Joe’s, we see ourselves as your neighborhood grocery store."
 	},
 	{
         "_id": "5f8532d110c90b77d09f66c6",
@@ -44,7 +41,6 @@
 		"address": "3 Masonic Ave San Francisco, CA 9411",
 		"alcohol": ["Beer", "Wine", "Liquor"],
         "email": "100@traderjoes.com",
-        "description": "At Trader Joe’s, we see ourselves as your neighborhood grocery store.",
-        "storeReviewAvg": 10
+        "description": "At Trader Joe’s, we see ourselves as your neighborhood grocery store."
 	}
 ]
