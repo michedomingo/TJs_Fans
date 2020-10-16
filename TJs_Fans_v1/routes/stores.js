@@ -6,6 +6,7 @@ const {
   updateStore,
   deleteStore,
   getStoresInRadius,
+  storePhotoUpload,
 } = require("../controllers/stores");
 
 // Include other resource routers
@@ -19,6 +20,8 @@ router.use("/:storeId/products", productRouter);
 router.route("/radius/:zipcode/:distance").get(getStoresInRadius);
 
 router.route("/").get(getStores).post(createStore);
+
+router.route("/:id/photo").put(storePhotoUpload);
 
 router.route("/:id").get(getStore).put(updateStore).delete(deleteStore);
 
