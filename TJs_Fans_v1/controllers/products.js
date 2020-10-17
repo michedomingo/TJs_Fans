@@ -9,24 +9,17 @@ const Store = require("../models/Store");
 // @access  Public
 
 exports.getProducts = asyncHandler(async (req, res, next) => {
-  let query;
-
   if (req.params.storeId) {
-    query = Product.find({ store: req.params.storeId });
-  } else {
-    query = Product.find().populate({
-      path: "store",
-      select: "storeName description",
+    const products = await Product.find({ store: req.params.storeId });
+
+    return res.status(200).json({
+      success: true,
+      count: courses.length,
+      data: courses,
     });
+  } else {
+    res.status(200).json(res.advancedResults);
   }
-
-  const products = await query;
-
-  res.status(200).json({
-    success: true,
-    count: products.length,
-    data: products,
-  });
 });
 
 // // @desc    Get single Product
