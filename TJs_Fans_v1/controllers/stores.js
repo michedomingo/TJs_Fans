@@ -8,9 +8,7 @@ const geocoder = require("../utils/geocoder");
 // @route   GET /api/v1/stores
 // @access  Public
 exports.getStores = asyncHandler(async (req, res, next) => {
-  res
-    .status(200)
-    .json({ success: true, count: stores.length, pagination, data: stores });
+  res.status(200).json(res.advancedResults);
 });
 
 // @desc    Get single Store
