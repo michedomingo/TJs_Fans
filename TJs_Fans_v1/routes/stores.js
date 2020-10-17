@@ -17,24 +17,26 @@ const productRouter = require("./products");
 
 const router = express.Router();
 
-const { protect } = require("../middleware/auth");
+const { protect, authorize } = require("../middleware/auth");
 
 // Re-route into other resource routers
 router.use("/:storeId/products", productRouter);
 
 router.route("/radius/:zipcode/:distance").get(getStoresInRadius);
 
-router.route("/:id/photo").put(protect, storePhotoUpload);
+router
+  .route("/:id/photo")
+  .put(protect, authorize("publisher", "admin"), storePhotoUpload);
 
 router
   .route("/")
   .get(advancedResults(Store, "products"), getStores)
-  .post(protect, createStore);
+  .post(protect, authorize("publisher", "admin"), createStore);
 
 router
   .route("/:id")
   .get(getStore)
-  .put(protect, updateStore)
-  .delete(protect, deleteStore);
+  .put(protect, authorize("publisher", "admin"), updateStore)
+  .delete(protect, authorize("publisher", "admin"), deleteStore);
 
 module.exports = router;
