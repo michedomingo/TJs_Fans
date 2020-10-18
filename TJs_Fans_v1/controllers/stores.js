@@ -150,6 +150,16 @@ exports.storePhotoUpload = asyncHandler(async (req, res, next) => {
     );
   }
 
+  // Make sure user is store owner
+  if (store.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `User ${req.params.id} is not authorized to update this store photo`,
+        401
+      )
+    );
+  }
+
   if (!req.files) {
     return next(new ErrorResponse(`Please upload a file`, 400));
   }
