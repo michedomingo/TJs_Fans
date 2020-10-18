@@ -58,16 +58,28 @@ exports.createStore = asyncHandler(async (req, res, next) => {
 // @route   PUT /api/v1/stores/:id
 // @access  Private
 exports.updateStore = asyncHandler(async (req, res, next) => {
-  const store = await Store.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  });
+  let store = await Store.findById(req.params.id);
 
   if (!store) {
     return next(
       new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404)
     );
   }
+
+  // Make sure user is store owner
+  if (store.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `User ${req.params.id} is not authorized to update this store`,
+        401
+      )
+    );
+  }
+
+  store = await Store.findOneAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
   res.status(200).json({ success: true, data: store });
 });
@@ -81,6 +93,16 @@ exports.deleteStore = asyncHandler(async (req, res, next) => {
   if (!store) {
     return next(
       new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  // Make sure user is store owner
+  if (store.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `User ${req.params.id} is not authorized to delete this store`,
+        401
+      )
     );
   }
 
