@@ -10,13 +10,13 @@ const {
 } = require("../controllers/stores");
 
 const Store = require("../models/Store");
-const advancedResults = require("../middleware/advancedResults");
 
 // Include other resource routers
 const productRouter = require("./products");
 
 const router = express.Router();
 
+const advancedResults = require("../middleware/advancedResults");
 const { protect, authorize } = require("../middleware/auth");
 
 // Re-route into other resource routers

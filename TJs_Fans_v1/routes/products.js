@@ -8,10 +8,10 @@ const {
 } = require("../controllers/products");
 
 const Product = require("../models/Product");
-const advancedResults = require("../middleware/advancedResults");
 
 const router = express.Router({ mergeParams: true });
 
+const advancedResults = require("../middleware/advancedResults");
 const { protect, authorize } = require("../middleware/auth");
 
 router
