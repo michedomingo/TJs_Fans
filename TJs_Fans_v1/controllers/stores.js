@@ -30,6 +30,22 @@ exports.getStore = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/stores
 // @access  Private
 exports.createStore = asyncHandler(async (req, res, next) => {
+  // Add user to req.body
+  req.body.user = req.user.id;
+
+  // Check for published store
+  const publishedStore = await Store.findOne({ user: req.user.id });
+
+  // If the user is not an admin, they can ony add one store
+  if (publishedStore && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `The user with ID ${req.user.id} has already published a store`,
+        400
+      )
+    );
+  }
+
   const store = await Store.create(req.body);
 
   res.status(201).json({
