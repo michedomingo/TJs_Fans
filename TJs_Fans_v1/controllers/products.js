@@ -3,7 +3,7 @@ const asyncHandler = require("../middleware/async");
 const Product = require("../models/Product");
 const Store = require("../models/Store");
 
-// @desc    Get all Products
+// @desc    Get products
 // @route   GET /api/v1/products
 // @route   GET /api/v1/products/:storeId/products
 // @access  Public
@@ -14,8 +14,8 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
-      count: courses.length,
-      data: courses,
+      count: reviews.length,
+      data: reviews,
     });
   } else {
     res.status(200).json(res.advancedResults);

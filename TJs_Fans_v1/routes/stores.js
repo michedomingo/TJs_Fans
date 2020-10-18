@@ -13,6 +13,7 @@ const Store = require("../models/Store");
 
 // Include other resource routers
 const productRouter = require("./products");
+const reviewRouter = require("./reviews");
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ const { protect, authorize } = require("../middleware/auth");
 
 // Re-route into other resource routers
 router.use("/:storeId/products", productRouter);
+router.use("/:bootcampId/reviews", reviewRouter);
 
 router.route("/radius/:zipcode/:distance").get(getStoresInRadius);
 
