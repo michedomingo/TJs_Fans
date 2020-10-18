@@ -10,11 +10,6 @@ const ProductSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  store: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Store",
-    required: true,
-  },
   priceAvg: {
     type: Number,
     required: [true, "Please add product avg cost"],
@@ -45,6 +40,16 @@ const ProductSchema = new mongoose.Schema({
   organic: {
     type: Boolean,
     default: false,
+  },
+  store: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Store",
+    required: true,
+  },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: true,
   },
 });
 

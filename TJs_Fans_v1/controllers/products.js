@@ -49,6 +49,7 @@ exports.getProduct = asyncHandler(async (req, res, next) => {
 // @access  Private
 exports.addProduct = asyncHandler(async (req, res, next) => {
   req.body.store = req.params.storeId;
+  req.body.user = req.user.id;
 
   const store = await Store.findById(req.params.storeId);
 
@@ -56,6 +57,16 @@ exports.addProduct = asyncHandler(async (req, res, next) => {
     return next(
       new ErrorResponse(`No store with the id of ${req.params.storeId}`),
       404
+    );
+  }
+
+  // Make sure user is store owner
+  if (store.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `User ${req.user.id} is not authorized to add a product to this store ${store._id}`,
+        401
+      )
     );
   }
 
