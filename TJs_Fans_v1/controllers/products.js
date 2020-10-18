@@ -5,7 +5,7 @@ const Store = require("../models/Store");
 
 // @desc    Get all Products
 // @route   GET /api/v1/products
-// @route   GET /api/v1/stores/:storeId/products
+// @route   GET /api/v1/products/:storeId/products
 // @access  Public
 
 exports.getProducts = asyncHandler(async (req, res, next) => {
@@ -91,6 +91,16 @@ exports.updateProduct = asyncHandler(async (req, res, next) => {
     );
   }
 
+  // Make sure user is product owner
+  if (product.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `User ${req.user.id} is not authorized to update product ${product._id}`,
+        401
+      )
+    );
+  }
+
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
@@ -112,6 +122,16 @@ exports.deleteProduct = asyncHandler(async (req, res, next) => {
     return next(
       new ErrorResponse(`No product with the id of ${req.params.id}`),
       404
+    );
+  }
+
+  // Make sure user is product owner
+  if (product.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `User ${req.user.id} is not authorized to delete product ${product._id}`,
+        401
+      )
     );
   }
 
