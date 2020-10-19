@@ -64,3 +64,6 @@ exports.addReview = asyncHandler(async (req, res, next) => {
     data: review,
   });
 });
+
+// ErrorResponse: No store with the id of undefined
+//     at /Users/miche.flamingo/OneDrive/3_Programming/TJs_Fans/TJs_Fans_v1/controllers/reviews.js:56:7
