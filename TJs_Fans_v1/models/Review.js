@@ -21,9 +21,9 @@ const ReviewSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  bootcamp: {
+  store: {
     type: mongoose.Schema.ObjectId,
-    ref: "Bootcamp",
+    ref: "Store",
     required: true,
   },
   user: {
