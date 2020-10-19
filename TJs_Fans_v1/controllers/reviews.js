@@ -41,3 +41,26 @@ exports.getReview = asyncHandler(async (req, res, next) => {
     data: review,
   });
 });
+
+// @desc    Add review
+// @route   POST /api/v1/stores/:storeId/reviews
+// @access  Private
+exports.addReview = asyncHandler(async (req, res, next) => {
+  req.body.store = req.params.storeId;
+  req.body.user = req.user.id;
+
+  const store = await Store.findById(req.params.storeId);
+
+  if (!store) {
+    return next(
+      new ErrorResponse(`No store with the id of ${req.params.storeId}`, 404)
+    );
+  }
+
+  const review = await Review.create(req.body);
+
+  res.status(201).json({
+    success: true,
+    data: review,
+  });
+});

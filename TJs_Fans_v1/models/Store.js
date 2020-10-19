@@ -84,7 +84,6 @@ const StoreSchema = new mongoose.Schema(
       required: [false, "Please add a description"],
       maxlength: [500, "Description can not be more than 500 characters"],
     },
-    storeReviewAvg: Number,
     averageCost: Number,
     user: {
       type: mongoose.Schema.ObjectId,

@@ -33,7 +33,7 @@ const advancedResults = (model, populate) => async (req, res, next) => {
     const sortBy = req.query.sort.split(",").join(" ");
     query = query.sort(sortBy);
   } else {
-    query = query.sort("-storeReviewAvg");
+    query = query.sort("-createdAt");
   }
 
   // Pagination
