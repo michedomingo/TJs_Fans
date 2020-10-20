@@ -12,6 +12,11 @@ const StoreSchema = new mongoose.Schema(
       maxlength: [50, "Name can not be more than 50 characters"],
     },
     slug: String,
+    description: {
+      type: String,
+      required: [false, "Please add a description"],
+      maxlength: [500, "Description can not be more than 500 characters"],
+    },
     website: {
       type: String,
       match: [
@@ -22,6 +27,13 @@ const StoreSchema = new mongoose.Schema(
     phone: {
       type: String,
       maxlength: [20, "Phone number can not be longer than 20 characters"],
+    },
+    email: {
+      type: String,
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "Please add a valid email",
+      ],
     },
     address: {
       type: String,
@@ -54,37 +66,25 @@ const StoreSchema = new mongoose.Schema(
       sun: String,
     },
     seniorHours: String,
-    averageRating: {
-      type: Number,
-      min: [1, "Rating must be at least 1"],
-      max: [10, "Rating must can not be more than 10"],
-    },
-    photo: {
-      type: String,
-      default: "no-photo.jpg",
-    },
     alcohol: {
       type: [String],
       required: true,
       enum: ["Beer", "Wine", "Liquor"],
     },
+    photo: {
+      type: String,
+      default: "no-photo.jpg",
+    },
+    averageRating: {
+      type: Number,
+      min: [1, "Rating must be at least 1"],
+      max: [10, "Rating must can not be more than 10"],
+    },
+    averageCost: Number,
     createdAt: {
       type: Date,
       default: Date.now,
     },
-    email: {
-      type: String,
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Please add a valid email",
-      ],
-    },
-    description: {
-      type: String,
-      required: [false, "Please add a description"],
-      maxlength: [500, "Description can not be more than 500 characters"],
-    },
-    averageCost: Number,
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",

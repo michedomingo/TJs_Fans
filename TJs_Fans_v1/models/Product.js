@@ -6,14 +6,7 @@ const ProductSchema = new mongoose.Schema({
     trim: true,
     required: [true, "Please add a product name"],
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  priceAvg: {
-    type: Number,
-    required: [true, "Please add product avg cost"],
-  },
+  description: String,
   ingredients: String,
   nutritionFacts: String,
   productLabel: {
@@ -40,6 +33,14 @@ const ProductSchema = new mongoose.Schema({
   organic: {
     type: Boolean,
     default: false,
+  },
+  priceAvg: {
+    type: Number,
+    required: [true, "Please add product avg cost"],
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
   store: {
     type: mongoose.Schema.ObjectId,
