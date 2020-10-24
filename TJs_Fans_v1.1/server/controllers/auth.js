@@ -2,35 +2,6 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const { sendNodemailer } = require('../utils/sendEmail');
 
-// exports.register = (req, res) => {
-//   //   console.log('REQ BODY ON SIGNUP', req.body);
-
-//   const { name, email, password } = req.body;
-
-//   // Mongoose method
-//   User.findOne({ email }).exec((err, user) => {
-//     if (user) {
-//       return res.status(400).json({
-//         error: 'Email is already registered in the system',
-//       });
-//     }
-//   });
-
-//   let newUser = new User({ name, email, password });
-
-//   newUser.save((err, success) => {
-//     if (err) {
-//       console.log('SIGNUP ERROR', err);
-//       return res.status(400).json({
-//         error: err,
-//       });
-//     }
-//     res.json({
-//       message: 'Registration success! Please login',
-//     });
-//   });
-// };
-
 exports.register = (req, res) => {
   const { name, email, password } = req.body;
 
@@ -100,4 +71,32 @@ exports.accountActivation = (req, res) => {
       message: 'Oops! Something went wrong. Please try again.',
     });
   }
+};
+
+exports.login = (req, res) => {
+  const { email, password } = req.body;
+  // Verify if user exists (findOne - mongoose method)
+  User.findOne({ email }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: 'User with that email does not exist. Please register.',
+      });
+    }
+    // Authenticate from UserSchema
+    if (!user.authenticate(password)) {
+      return res.status(400).json({
+        error: 'Email and password do not match',
+      });
+    }
+    // Generate a token and send to client
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '7d',
+    });
+    const { _id, name, email, role } = user;
+
+    return res.json({
+      token,
+      user: { _id, name, email, role },
+    });
+  });
 };

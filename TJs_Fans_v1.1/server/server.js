@@ -8,13 +8,13 @@ const connectDB = require('./config/db');
 // Load env vars
 dotenv.config({ path: './config/config.env' });
 
-const app = express();
-
 // Connect to database
 connectDB();
 
 // Route files
 const authRoutes = require('./routes/auth');
+
+const app = express();
 
 // Body parser
 app.use(express.json());
