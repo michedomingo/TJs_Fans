@@ -57,7 +57,8 @@ export const isAuth = () => {
   }
 };
 
-export const signout = (next) => {
+// remove authentication cookie upon logout
+export const logout = (next) => {
   removeCookie('token');
   removeLocalStorage('user');
   next();

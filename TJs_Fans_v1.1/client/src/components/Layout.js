@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { isAuth } from '../auth/helpers';
+import { isAuth, logout } from '../auth/helpers';
 
-const Layout = ({ children, match }) => {
+const Layout = ({ children, match, history }) => {
   const isActive = (path) => {
     if (match.path === path) {
       return { color: '#000' };
@@ -37,6 +37,22 @@ const Layout = ({ children, match }) => {
             </Link>
           </li>
         </Fragment>
+      )}
+
+      {isAuth() && (
+        <li className='nav-item'>
+          <span
+            className='nav-link'
+            style={{ cursor: 'pointer', color: '#fff' }}
+            onClick={() => {
+              logout(() => {
+                history.push('/');
+              });
+            }}
+          >
+            Logout
+          </span>
+        </li>
       )}
     </ul>
   );
