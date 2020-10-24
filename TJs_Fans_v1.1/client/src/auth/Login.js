@@ -5,15 +5,14 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-const Register = () => {
+const Login = () => {
   const [values, setValues] = useState({
-    name: 'MD',
     email: 'michedomingo@gmail.com',
     password: '`123456`',
     buttonText: 'Submit',
   });
 
-  const { name, email, password, buttonText } = values;
+  const { email, password, buttonText } = values;
 
   const handleChange = (name) => (event) => {
     // console.log(event.target.value);
@@ -25,11 +24,13 @@ const Register = () => {
     setValues({ ...values, buttonText: 'Submitting' });
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API}/register`,
-      data: { name, email, password },
+      url: `${process.env.REACT_APP_API}/login`,
+      data: { email, password },
     })
       .then((response) => {
-        console.log('SIGNUP SUCCESS', response);
+        console.log('LOGIN SUCCESS', response);
+
+        // save the response (user, token) localstorage/cookie
         setValues({
           ...values,
           name: '',
@@ -37,27 +38,18 @@ const Register = () => {
           password: '',
           buttonText: 'Submitted',
         });
-        toast.success(response.data.message);
+        // toast.success(response.data.message);
+        toast.success(`Hey ${response.data.user.name}, Welcome back!`);
       })
       .catch((error) => {
-        console.log('SIGNUP ERROR', error.response.data);
+        console.log('LOGIN ERROR', error.response.data);
         setValues({ ...values, buttonText: 'Submit' });
         toast.error(error.response.data.error);
       });
   };
 
-  const registerForm = () => (
+  const loginForm = () => (
     <form>
-      <div className='form-group'>
-        <lable className='text-muted'>Name</lable>
-        <input
-          onChange={handleChange('name')}
-          value={name}
-          type='text'
-          className='form-control'
-        />
-      </div>
-
       <div className='form-group'>
         <lable className='text-muted'>Email</lable>
         <input
@@ -91,11 +83,11 @@ const Register = () => {
       <div className='col-md-6 offset-md-3'>
         <ToastContainer />
 
-        <h1 className='p-5 text-center'>Register</h1>
-        {registerForm()}
+        <h1 className='p-5 text-center'>Login</h1>
+        {loginForm()}
       </div>
     </Layout>
   );
 };
 
-export default Register;
+export default Login;
