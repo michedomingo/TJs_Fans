@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { authenticate } from './helpers';
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -29,17 +30,19 @@ const Login = () => {
     })
       .then((response) => {
         console.log('LOGIN SUCCESS', response);
-
         // save the response (user, token) localstorage/cookie
-        setValues({
-          ...values,
-          name: '',
-          email: '',
-          password: '',
-          buttonText: 'Submitted',
+        authenticate(response, () => {
+          setValues({
+            ...values,
+            name: '',
+            email: '',
+            password: '',
+            buttonText: 'Submitted',
+          });
+
+          // toast.success(response.data.message);
+          toast.success(`Hey ${response.data.user.name}, Welcome back!`);
         });
-        // toast.success(response.data.message);
-        toast.success(`Hey ${response.data.user.name}, Welcome back!`);
       })
       .catch((error) => {
         console.log('LOGIN ERROR', error.response.data);
