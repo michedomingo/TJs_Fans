@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Layout from '../components/Layout';
 import axios from 'axios';
+import { isAuth } from './helpers';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -90,7 +91,7 @@ const Register = () => {
     <Layout>
       <div className='col-md-6 offset-md-3'>
         <ToastContainer />
-
+        <h1 className='p-5 text-center'>Login</h1>
         <h1 className='p-5 text-center'>Register</h1>
         {registerForm()}
       </div>
