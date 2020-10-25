@@ -3,8 +3,9 @@ const router = express.Router();
 
 // import controller
 const { requireLogin } = require('../controllers/auth');
-const { read } = require('../controllers/user');
+const { read, update } = require('../controllers/user');
 
 router.get('/user/:id', requireLogin, read);
+router.put('/user/update', requireLogin, update);
 
 module.exports = router;
