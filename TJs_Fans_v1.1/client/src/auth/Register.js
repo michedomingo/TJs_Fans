@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Layout from '../components/Layout';
 import axios from 'axios';
 import { isAuth } from './helpers';
@@ -8,9 +8,9 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 const Register = () => {
   const [values, setValues] = useState({
-    name: 'MD',
-    email: 'michedomingo@gmail.com',
-    password: '`123456`',
+    name: '',
+    email: '',
+    password: '``',
     buttonText: 'Submit',
   });
 
@@ -50,7 +50,7 @@ const Register = () => {
   const registerForm = () => (
     <form>
       <div className='form-group'>
-        <lable className='text-muted'>Name</lable>
+        <label className='text-muted'>Name</label>
         <input
           onChange={handleChange('name')}
           value={name}
@@ -60,7 +60,7 @@ const Register = () => {
       </div>
 
       <div className='form-group'>
-        <lable className='text-muted'>Email</lable>
+        <label className='text-muted'>Email</label>
         <input
           onChange={handleChange('email')}
           value={email}
@@ -70,7 +70,7 @@ const Register = () => {
       </div>
 
       <div className='form-group'>
-        <lable className='text-muted'>Password</lable>
+        <label className='text-muted'>Password</label>
         <input
           onChange={handleChange('password')}
           value={password}
@@ -91,6 +91,7 @@ const Register = () => {
     <Layout>
       <div className='col-md-6 offset-md-3'>
         <ToastContainer />
+        {isAuth() ? <Redirect to='/' /> : null}
         <h1 className='p-5 text-center'>Login</h1>
         <h1 className='p-5 text-center'>Register</h1>
         {registerForm()}

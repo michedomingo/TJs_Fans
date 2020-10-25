@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Layout from '../components/Layout';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -57,7 +57,7 @@ const Login = ({ history }) => {
   const loginForm = () => (
     <form>
       <div className='form-group'>
-        <lable className='text-muted'>Email</lable>
+        <label className='text-muted'>Email</label>
         <input
           onChange={handleChange('email')}
           value={email}
@@ -67,7 +67,7 @@ const Login = ({ history }) => {
       </div>
 
       <div className='form-group'>
-        <lable className='text-muted'>Password</lable>
+        <label className='text-muted'>Password</label>
         <input
           onChange={handleChange('password')}
           value={password}
