@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
 const { sendNodemailer } = require('../utils/sendEmail');
 
 exports.register = (req, res) => {
@@ -100,3 +101,9 @@ exports.login = (req, res) => {
     });
   });
 };
+
+// Validate token and user info available to user
+exports.requireLogin = expressJwt({
+  secret: process.env.JWT_SECRET, // req.user
+  algorithms: ['HS256'],
+});

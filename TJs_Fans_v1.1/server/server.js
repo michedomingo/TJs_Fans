@@ -8,13 +8,14 @@ const connectDB = require('./config/db');
 // Load env vars
 dotenv.config({ path: './config/config.env' });
 
+const app = express();
+
 // Connect to database
 connectDB();
 
-// Route files
+// Import routes
 const authRoutes = require('./routes/auth');
-
-const app = express();
+const userRoutes = require('./routes/user');
 
 // Body parser
 app.use(express.json());
@@ -25,13 +26,14 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Enable CORS
-// app.use(cors());
+// app.use(cors()); // allows all origins
 if ((process.env.NODE_ENV = 'development')) {
   app.use(cors({ origin: `http://localhost:3000` }));
 }
 
 // Middleware
 app.use('/api/v1', authRoutes);
+app.use('/api/v1', userRoutes);
 
 const PORT = process.env.PORT || 5000;
 const server = app.listen(
