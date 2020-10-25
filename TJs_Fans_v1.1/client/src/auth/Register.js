@@ -10,7 +10,7 @@ const Register = () => {
   const [values, setValues] = useState({
     name: '',
     email: '',
-    password: '``',
+    password: '',
     buttonText: 'Submit',
   });
 
@@ -92,7 +92,6 @@ const Register = () => {
       <div className='col-md-6 offset-md-3'>
         <ToastContainer />
         {isAuth() ? <Redirect to='/' /> : null}
-        <h1 className='p-5 text-center'>Login</h1>
         <h1 className='p-5 text-center'>Register</h1>
         {registerForm()}
       </div>

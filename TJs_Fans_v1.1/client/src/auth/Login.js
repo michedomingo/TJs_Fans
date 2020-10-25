@@ -8,8 +8,8 @@ import { authenticate, isAuth } from './helpers';
 
 const Login = ({ history }) => {
   const [values, setValues] = useState({
-    email: 'michedomingo@gmail.com',
-    password: '`123456`',
+    email: '',
+    password: '',
     buttonText: 'Submit',
   });
 
