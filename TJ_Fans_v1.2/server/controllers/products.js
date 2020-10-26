@@ -13,3 +13,16 @@ exports.getProducts = async (req, res) => {
 
   res.send(products);
 };
+
+exports.getProduct = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      res.send(product);
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    res.status(404).end();
+  }
+};
