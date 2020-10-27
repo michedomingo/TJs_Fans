@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+// import Layout from '../components/Layout';
 import axios from 'axios';
 import { isAuth } from './helpers';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import './auth.css';
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -25,11 +27,11 @@ const Register = () => {
     setValues({ ...values, buttonText: 'Submitting' });
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API}/register`,
+      url: `${process.env.REACT_APP_API_URL}/register`,
       data: { name, email, password },
     })
       .then((response) => {
-        console.log('SIGNUP SUCCESS', response);
+        // console.log('SIGNUP SUCCESS', response);
         setValues({
           ...values,
           name: '',
@@ -40,14 +42,14 @@ const Register = () => {
         toast.success(response.data.message);
       })
       .catch((error) => {
-        console.log('SIGNUP ERROR', error.response.data);
+        // console.log('SIGNUP ERROR', error.response.data);
         setValues({ ...values, buttonText: 'Submit' });
         toast.error(error.response.data.error);
       });
   };
 
   const registerForm = () => (
-    <form>
+    <form className='form'>
       <div className='form-group'>
         <label className='text-muted'>Name</label>
         <input
@@ -87,11 +89,14 @@ const Register = () => {
   );
 
   return (
-    <div className='col-md-6 offset-md-3'>
+    <div className='auth'>
       <ToastContainer />
       {isAuth() ? <Redirect to='/' /> : null}
-      <h1 className='p-5 text-center'>Register</h1>
+      <h1 className='large text-primary'>Register</h1>
       {registerForm()}
+      <p className='my-1'>
+        Already have an account? <Link to='/login'>Sign In</Link>
+      </p>
     </div>
   );
 };

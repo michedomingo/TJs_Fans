@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { authenticate, isAuth } from './helpers';
+import './auth.css';
 
 const Login = ({ history }) => {
   const [values, setValues] = useState({
@@ -24,11 +25,11 @@ const Login = ({ history }) => {
     setValues({ ...values, buttonText: 'Submitting' });
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API}/login`,
+      url: `${process.env.REACT_APP_API_URL}/login`,
       data: { email, password },
     })
       .then((response) => {
-        console.log('LOGIN SUCCESS', response);
+        // console.log('LOGIN SUCCESS', response);
         // save the response (user, token) localstorage/cookie
         authenticate(response, () => {
           setValues({
@@ -47,14 +48,14 @@ const Login = ({ history }) => {
         });
       })
       .catch((error) => {
-        console.log('LOGIN ERROR', error.response.data);
+        // console.log('LOGIN ERROR', error.response.data);
         setValues({ ...values, buttonText: 'Submit' });
         toast.error(error.response.data.error);
       });
   };
 
   const loginForm = () => (
-    <form>
+    <form className='form'>
       <div className='form-group'>
         <label className='text-muted'>Email</label>
         <input
@@ -84,10 +85,13 @@ const Login = ({ history }) => {
   );
 
   return (
-    <div className='col-md-6 offset-md-3'>
+    <div className='auth'>
       <ToastContainer />
       {isAuth() ? <Redirect to='/' /> : null}
-      <h1 className='p-5 text-center'>Login</h1>
+      <h1 className='large text-primary'>Login</h1>
+      <p className='lead'>
+        <i className='fas fa-user'></i> Sign Into Your Account
+      </p>
       {loginForm()}
     </div>
   );

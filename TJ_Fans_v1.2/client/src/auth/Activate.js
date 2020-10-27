@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Layout from '../components/Layout';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import './auth.css';
 
 const Activate = ({ match }) => {
   const [values, setValues] = useState({
@@ -28,7 +28,7 @@ const Activate = ({ match }) => {
     event.preventDefault();
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_API}/account-activation`,
+      url: `${process.env.REACT_APP_API_URL}/account-activation`,
       data: { token },
     })
       .then((response) => {
@@ -52,12 +52,10 @@ const Activate = ({ match }) => {
   );
 
   return (
-    <Layout>
-      <div className='col-md-6 offset-md-3'>
-        <ToastContainer />
-        {activationLink()}
-      </div>
-    </Layout>
+    <div className='auth'>
+      <ToastContainer />
+      {activationLink()}
+    </div>
   );
 };
 
