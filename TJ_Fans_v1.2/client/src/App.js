@@ -19,6 +19,17 @@ class App extends Component {
     this.ProductPage = Product(this.addToList);
   }
 
+  componentDidMount = () => {
+    document.addEventListener('visibilitychange', () => {
+      console.log('visibilitychange', document.hidden);
+      if (!document.hidden) {
+        this.setState({
+          itemsInList: store.get('itemsInList') || [],
+        });
+      }
+    });
+  };
+
   addToList = (item) => {
     const { itemsInList } = this.state;
     itemsInList.push(item);
