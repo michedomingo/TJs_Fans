@@ -4,7 +4,7 @@ import './Navbar.css';
 
 export default class NavigationBar extends Component {
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, itemsInList } = this.props;
 
     return (
       <div className='NavigationBar'>
@@ -18,7 +18,7 @@ export default class NavigationBar extends Component {
 
         {isLoggedIn ? (
           <Fragment>
-            <Link to='/list'>my list</Link>
+            <Link to='/list'>my list ({itemsInList})</Link>
             <Link to='/list-all'>all lists</Link>
           </Fragment>
         ) : (

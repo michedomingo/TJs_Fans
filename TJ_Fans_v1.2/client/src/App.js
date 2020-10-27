@@ -12,11 +12,32 @@ import Account from './pages/Account';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { itemsInList: [] };
+    this.ProductPage = Product(this.addToList);
+  }
+
+  addToList = (item) => {
+    const { itemsInList } = this.state;
+    itemsInList.push(item);
+    this.setState({ itemsInList });
+  };
+
+  removeFromList = (index) => {
+    const { itemsInList } = this.state;
+    itemsInList.splice(index, 1);
+    this.setState({ itemsInList });
+  };
+
   render() {
     return (
       <Router>
         <div className='App'>
-          <NavigationBar isLoggedIn={true} />
+          <NavigationBar
+            isLoggedIn={true}
+            itemsInList={this.state.itemsInList.length}
+          />
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/forms' exact component={FormDemo} />
@@ -24,7 +45,7 @@ class App extends Component {
             <Route path='/list-all' exact component={ListAll} />
             <Route path='/account' exact component={Account} />
             <Route path='/category/:slug' component={Category} />
-            <Route path='/product/:id' component={Product} />
+            <Route path='/product/:id' component={this.ProductPage} />
             <Route component={NotFound} />
           </Switch>
         </div>
