@@ -10,6 +10,8 @@ import Product from './pages/Product';
 import ListAll from './pages/ListAll';
 import List from './pages/List';
 import Account from './pages/Account';
+import UserMgmt from './pages/admin/UserMgmt';
+import ProductMgmt from './pages/admin/ProductMgmt';
 import './App.css';
 
 class App extends Component {
@@ -65,6 +67,8 @@ class App extends Component {
             />
             <Route path='/list-all' exact component={ListAll} />
             <Route path='/account' exact component={Account} />
+            <Route path='/admin/users' exact component={UserMgmt} />
+            <Route path='/admin/products' exact component={ProductMgmt} />
             <Route path='/category/:slug' component={Category} />
             <Route path='/product/:id' component={this.ProductPage} />
             <Route component={NotFound} />
