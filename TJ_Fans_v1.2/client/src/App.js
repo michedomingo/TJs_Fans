@@ -56,7 +56,13 @@ class App extends Component {
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/forms' exact component={FormDemo} />
-            <Route path='/list' exact component={List} />
+            <Route
+              path='/list'
+              exact
+              component={(props) => (
+                <List {...props} items={this.state.itemsInList} />
+              )}
+            />
             <Route path='/list-all' exact component={ListAll} />
             <Route path='/account' exact component={Account} />
             <Route path='/category/:slug' component={Category} />
