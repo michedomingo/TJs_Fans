@@ -1,6 +1,7 @@
 .ProductList {
     display: flex;
     flex-direction: column;
+    margin: 7rem 3rem;
 }
 
 .ProductList a {

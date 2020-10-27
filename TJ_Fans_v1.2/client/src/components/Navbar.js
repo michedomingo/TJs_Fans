@@ -1,14 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.css';
+// import './Navbar.css';
 
 export default class NavigationBar extends Component {
   render() {
     const { isLoggedIn, itemsInList } = this.props;
 
     return (
-      <div className='NavigationBar'>
-        <Link to='/'>home</Link>
+      <nav className='navbar bg-dark'>
+        <h1>
+          <Link to='/'>
+            <i className='fas fa-fan'></i> TJ's Fans
+          </Link>
+        </h1>
 
         <Link to='/category/cheese'>cheese</Link>
         <Link to='/category/frozen'>frozen</Link>
@@ -24,7 +28,7 @@ export default class NavigationBar extends Component {
         ) : (
           <Link to='/account'>account</Link>
         )}
-      </div>
+      </nav>
     );
   }
 }

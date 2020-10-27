@@ -9,11 +9,13 @@ import Category from './pages/Category';
 import Product from './pages/Product';
 import ListAll from './pages/ListAll';
 import List from './pages/List';
-import Account from './pages/Account';
+import Landing from './pages/Account';
 import UserMgmt from './pages/admin/UserMgmt';
 import ProductMgmt from './pages/admin/ProductMgmt';
 import Auth from './pages/Auth';
 import { getCurrentUser } from './api/Auth';
+import Register from './auth/Register';
+import Login from './auth/Login';
 import './App.css';
 
 class App extends Component {
@@ -43,9 +45,10 @@ class App extends Component {
     const result = await getCurrentUser();
     if (result && result.data) {
       this.setState({ user: result.data });
+    } else {
+      this.setState({ user: undefined });
     }
   };
-
   addToList = (item) => {
     const { itemsInList } = this.state;
     itemsInList.push(item);
@@ -71,6 +74,8 @@ class App extends Component {
           />
           <Switch>
             <Route path='/' exact component={Home} />
+            <Route path='/register' component={Register} />
+            <Route path='/login' component={Login} />
             <Route path='/auth/:token' exact component={Auth(this.authUser)} />
             <Route path='/forms' exact component={FormDemo} />
             <Route
@@ -81,11 +86,17 @@ class App extends Component {
               )}
             />
             <Route path='/list-all' exact component={ListAll} />
-            <Route path='/account' exact component={Account} />
-            <Route path='/admin/users' exact component={UserMgmt} />
-            <Route path='/admin/products' exact component={ProductMgmt} />
+            <Route path='/account' exact component={Landing} />
             <Route path='/category/:slug' component={Category} />
             <Route path='/product/:id' component={this.ProductPage} />
+
+            {isLoggedIn && this.state.user.role === 'admin' && (
+              <Route path='/admin/users' exact component={UserMgmt} />
+            )}
+            {isLoggedIn && this.state.user.role === 'admin' && (
+              <Route path='/admin/products' exact component={ProductMgmt} />
+            )}
+
             <Route component={NotFound} />
           </Switch>
         </div>
