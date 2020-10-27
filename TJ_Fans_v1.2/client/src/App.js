@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import store from 'store2';
 import NavigationBar from './components/Navbar';
 import Home from './pages/Home';
 import FormDemo from './pages/FormDemo';
@@ -14,7 +15,7 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { itemsInList: [] };
+    this.state = { itemsInList: store.get('itemsInList') || [] };
     this.ProductPage = Product(this.addToList);
   }
 
@@ -22,15 +23,18 @@ class App extends Component {
     const { itemsInList } = this.state;
     itemsInList.push(item);
     this.setState({ itemsInList });
+    store.set('itemsInList', itemsInList);
   };
 
   removeFromList = (index) => {
     const { itemsInList } = this.state;
     itemsInList.splice(index, 1);
     this.setState({ itemsInList });
+    store.set('itemsInList', itemsInList);
   };
 
   render() {
+    console.log(this.state);
     return (
       <Router>
         <div className='App'>

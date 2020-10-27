@@ -4,7 +4,7 @@ import { PrimaryButton } from './Button';
 
 export default class ProductView extends Component {
   addToList = () => {
-    this.props.addToList(this.props.product);
+    this.props.addToList(this.props.product.getData());
   };
 
   render() {
