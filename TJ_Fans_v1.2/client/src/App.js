@@ -12,24 +12,38 @@ import List from './pages/List';
 import Account from './pages/Account';
 import UserMgmt from './pages/admin/UserMgmt';
 import ProductMgmt from './pages/admin/ProductMgmt';
+import Auth from './pages/Auth';
+import { getCurrentUser } from './api/Auth';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { itemsInList: store.get('itemsInList') || [] };
+    this.state = {
+      itemsInList: store.get('itemsInList') || [],
+      user: undefined,
+    };
     this.ProductPage = Product(this.addToList);
   }
 
   componentDidMount = () => {
+    this.authUser();
     document.addEventListener('visibilitychange', () => {
       console.log('visibilitychange', document.hidden);
       if (!document.hidden) {
         this.setState({
           itemsInList: store.get('itemsInList') || [],
         });
+        this.authUser();
       }
     });
+  };
+
+  authUser = async () => {
+    const result = await getCurrentUser();
+    if (result && result.data) {
+      this.setState({ user: result.data });
+    }
   };
 
   addToList = (item) => {
@@ -47,16 +61,17 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
+    const isLoggedIn = this.state.user && this.state.user._id;
     return (
       <Router>
         <div className='App'>
           <NavigationBar
-            isLoggedIn={true}
+            isLoggedIn={isLoggedIn}
             itemsInList={this.state.itemsInList.length}
           />
           <Switch>
             <Route path='/' exact component={Home} />
+            <Route path='/auth/:token' exact component={Auth(this.authUser)} />
             <Route path='/forms' exact component={FormDemo} />
             <Route
               path='/list'
