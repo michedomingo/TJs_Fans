@@ -7,12 +7,7 @@ export default class NavigationBar extends Component {
     const { isLoggedIn, itemsInList } = this.props;
 
     return (
-      <nav className='NavigationBar'>
-        {/* <h1>
-          <Link to='/'>
-            <i className='fas fa-fan'></i> TJ's Fans
-          </Link>
-        </h1> */}
+      <div className='NavigationBar'>
         <Link to='/' className='fas fa-fan'>
           TJ's Fans
         </Link>
@@ -21,7 +16,6 @@ export default class NavigationBar extends Component {
         <Link to='/category/grocery'>grocery</Link>
         <Link to='/category/produce'>produce</Link>
         <Link to='/category/snacks'>snacks</Link>
-
         {isLoggedIn ? (
           <Fragment>
             <Link to='/list'>my list ({itemsInList})</Link>
@@ -30,7 +24,7 @@ export default class NavigationBar extends Component {
         ) : (
           <Link to='/account'>account</Link>
         )}
-      </nav>
+      </div>
     );
   }
 }

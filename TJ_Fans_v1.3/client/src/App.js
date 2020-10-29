@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import store from 'store2';
 import NavigationBar from './components/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import './App.css';
 import Home from './pages/Home';
 import Form from './pages/Form';
 import NotFound from './pages/NotFound';
@@ -14,12 +15,14 @@ import UserMgmt from './pages/admin/UserMgmt';
 import ProductMgmt from './pages/admin/ProductMgmt';
 import Auth from './pages/Auth';
 import { getCurrentUser } from './api/Auth';
-import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { itemsInList: store.get('itemsInList') || [] };
+    this.state = {
+      itemsInList: store.get('itemsInList') || [],
+      user: undefined,
+    };
     this.ProductPage = Product(this.addToList);
   }
 
@@ -40,6 +43,8 @@ class App extends Component {
     const result = await getCurrentUser();
     if (result && result.data) {
       this.setState({ user: result.data });
+    } else {
+      this.setState({ user: undefined });
     }
   };
 
@@ -80,10 +85,15 @@ class App extends Component {
             />
             <Route path='/list-all' exact component={ListAll} />
             <Route path='/account' exact component={Account} />
-            <Route path='/admin/users' exact component={UserMgmt} />
-            <Route path='/admin/products' exact component={ProductMgmt} />
             <Route path='/category/:slug' component={Category} />
             <Route path='/product/:id' component={this.ProductPage} />
+
+            {isLoggedIn && this.state.user.role === 'admin' && (
+              <Route path='/admin/users' exact component={UserMgmt} />
+            )}
+            {isLoggedIn && this.state.user.role === 'admin' && (
+              <Route path='/admin/products' exact component={ProductMgmt} />
+            )}
 
             <Route component={NotFound} />
           </Switch>
