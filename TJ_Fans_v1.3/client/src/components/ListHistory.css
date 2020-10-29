@@ -1,0 +1,35 @@
+.ListHistory {
+    display: flex;
+    margin-bottom: 24px;
+    justify-content: space-around;
+    border-bottom: 1px solid mediumaquamarine;
+}
+
+.ListHistoryId {
+    flex: 1;
+    font-family: Monaco, monospace;
+    font-weight: 900;
+}
+
+.ListHistoryTotalPrice {
+    font-family: Monaco, monospace;
+}
+
+.ListHistoryProducts {
+    flex: 1;
+}
+
+.ListHistoryProducts > .ProductCard {
+    align-items: center;
+    flex-direction: row;
+}
+
+.ListHistoryProducts > .ProductCard > h3 {
+    padding: 12px;
+}
+
+.ListHistoryProducts > .ProductCard img {
+    width: auto;
+    max-width: 100px;
+    max-height: 100px;
+}

@@ -20,7 +20,7 @@ class ListCreate extends React.Component {
                 onRemove={() => this.props.removeFromList(index)}
               />
             ))}
-          <PrimaryButton onClick={this.props.startCheckout}>
+          <PrimaryButton onClick={this.props.startList}>
             Save List
           </PrimaryButton>
         </div>

@@ -56,6 +56,12 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+app.get('/heartbeat', (req, res) =>
+  res.send({
+    dateTime: new Date().toJSON(),
+  })
+);
+
 const PORT = process.env.PORT || 5000;
 const server = app.listen(
   PORT,

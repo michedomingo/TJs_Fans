@@ -51,5 +51,13 @@ export default class List {
   /**
    * @return {string}
    */
-  getList = () => this._listName;
+  getListName = () => this._listName;
+
+  getData = () => ({
+    _id: this._id,
+    user: this._user,
+    timestamp: this._timestamp,
+    products: this._products.map((_) => _.getDate()),
+    listName: this._listName,
+  });
 }

@@ -20,4 +20,13 @@ export default (app) => {
       }
     }
   });
+
+  app.get('/v1/lists', async (req, res) => {
+    if (!req.user.data._id) {
+      res.status(401).end();
+      return;
+    }
+    const lists = (await ListModel.find({ user: req.user.data._id })) || [];
+    res.send(lists);
+  });
 };

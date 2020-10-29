@@ -15,7 +15,7 @@ class ListSubmitForm extends Component {
       );
     }
     return (
-      <Form onSubmit={this.props.submitOrder}>
+      <Form onSubmit={this.props.submitList}>
         <TextInput
           label='List Title'
           name='listName'
