@@ -14,7 +14,10 @@ export const ListSchema = new Schema({
       images: [String],
     },
   ],
-  listName: String,
+  listName: {
+    title: String,
+    notes: String,
+  },
 });
 
 export const ListModel = mongoose.model('List', ListSchema);

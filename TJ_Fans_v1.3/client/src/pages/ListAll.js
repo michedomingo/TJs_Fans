@@ -16,7 +16,7 @@ export default class ListAll extends Component {
       return <LoadingIndicator />;
     }
     return this.state.lists.map((list) => (
-      <ListHistory key={list.getListName()} list={list} />
+      <ListHistory key={list.getId()} list={list} />
     ));
   }
 }

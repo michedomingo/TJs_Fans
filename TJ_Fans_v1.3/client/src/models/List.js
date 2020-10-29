@@ -7,7 +7,7 @@ export default class List {
    * @param {string} user
    * @param {number} timestamp
    * @param {Array} products
-   * @param {string} listName
+   * @param {Object} listName
    */
   constructor({ _id, user, timestamp, products, listName }) {
     this._id = _id;
@@ -49,9 +49,9 @@ export default class List {
   getFormattedTotalPrice = () => `$${String(this.getTotalPrice() / 100)}`;
 
   /**
-   * @return {string}
+   * @return {Object}
    */
-  getListName = () => this._listName;
+  getListName = () => this._listName.title;
 
   getData = () => ({
     _id: this._id,

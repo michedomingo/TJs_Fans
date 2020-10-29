@@ -24,6 +24,7 @@ export const saveList = async (body) => {
     const { data } = await axios.post('/v1/lists', body, {
       headers: await getAuthHeader(),
     });
+    console.log('saveList', data);
     if (data && data._id) {
       return {
         success: true,

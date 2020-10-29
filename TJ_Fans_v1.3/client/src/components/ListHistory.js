@@ -6,9 +6,7 @@ class ListHistory extends Component {
   render() {
     return (
       <div className='ListHistory'>
-        <p className='ListHistoryId'>
-          List Name: {this.props.list.getListName()}
-        </p>
+        <p className='ListHistoryId'>List Name: {this.props.list.getId()}</p>
         <div className='ListHistoryProducts'>
           {this.props.list.getProducts().map((product, index) => (
             <ProductCard

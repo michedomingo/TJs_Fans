@@ -18,8 +18,14 @@ class ListSubmitForm extends Component {
       <Form onSubmit={this.props.submitList}>
         <TextInput
           label='List Title'
-          name='listName'
-          value={this.props.values.listName || ''}
+          name='listName.title'
+          value={this.props.values.listName.title || ''}
+          onChange={this.props.handleChange}
+        />
+        <TextInput
+          label='Notes'
+          name='listName.notes'
+          value={this.props.values.listName.notes || ''}
           onChange={this.props.handleChange}
         />
         <PrimaryButton disabled={this.props.loading}>Save List</PrimaryButton>

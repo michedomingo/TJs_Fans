@@ -84,11 +84,12 @@ class App extends Component {
             <Route
               path='/list'
               exact
-              component={(props) => (
+              render={(props) => (
                 <ListSubmit
                   {...props}
                   items={this.state.itemsInList}
                   removeFromList={this.removeFromList}
+                  emptyList={this.emptyList}
                 />
               )}
             />

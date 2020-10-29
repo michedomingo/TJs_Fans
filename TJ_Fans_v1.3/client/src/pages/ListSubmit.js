@@ -7,7 +7,7 @@ import ListSubmitForm from '../components/ListSubmitForm';
 export default class ListSubmit extends Component {
   state = {
     startedList: false,
-    listName: undefined,
+    listName: {},
     successMessage: undefined,
     errorMessage: undefined,
     loading: false,
