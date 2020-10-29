@@ -6,6 +6,7 @@ import withAuthenticated from './middleware/withAuthentication.js';
 import getUserRoutes from './routes/users.js';
 import getProductRoutes from './routes/products.js';
 import getAuthRoutes from './routes/auth.js';
+import getListRoutes from './routes/lists.js';
 import mongoose from 'mongoose';
 
 // import { createRequire } from 'module';
@@ -47,6 +48,7 @@ app.use(logger);
 getUserRoutes(app);
 getProductRoutes(app);
 getAuthRoutes(app);
+getListRoutes(app);
 
 // Dev logging middleware
 const morgan = require('morgan');

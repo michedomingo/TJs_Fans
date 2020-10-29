@@ -9,7 +9,7 @@ import NotFound from './pages/NotFound';
 import Category from './pages/Category';
 import Product from './pages/Product';
 import ListAll from './pages/ListAll';
-import List from './pages/List';
+import ListSubmit from './pages/ListSubmit';
 import Account from './pages/Account';
 import UserMgmt from './pages/admin/UserMgmt';
 import ProductMgmt from './pages/admin/ProductMgmt';
@@ -62,6 +62,11 @@ class App extends Component {
     store.set('itemsInList', itemsInList);
   };
 
+  emptyList = () => {
+    this.setState({ itemsInList: [] });
+    store.set('itemsInList', []);
+  };
+
   render() {
     const isLoggedIn = this.state.user && this.state.user._id;
     console.log(this.state);
@@ -80,7 +85,11 @@ class App extends Component {
               path='/list'
               exact
               component={(props) => (
-                <List {...props} items={this.state.itemsInList} />
+                <ListSubmit
+                  {...props}
+                  items={this.state.itemsInList}
+                  removeFromList={this.removeFromList}
+                />
               )}
             />
             <Route path='/list-all' exact component={ListAll} />

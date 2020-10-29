@@ -21,7 +21,7 @@ export default class Product {
   /**
    * @return {string}
    */
-  getName = () => this._name;
+  getProductName = () => this._name;
 
   /**
    * @return {number}

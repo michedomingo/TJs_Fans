@@ -27,7 +27,7 @@ export default (app) => {
       const newUser = await UserModel.create({
         username: email.split('@')[0],
         email,
-        role: 'customer',
+        role: 'user',
       });
 
       const token = await AuthenticationService.generate(newUser);

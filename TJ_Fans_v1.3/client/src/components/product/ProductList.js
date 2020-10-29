@@ -14,7 +14,7 @@ export default class ProductList extends Component {
             style={index % 2 !== 0 ? { alignSelf: 'flex-end' } : null}
           >
             <ProductCard
-              name={product.getName()}
+              name={product.getProductName()}
               images={product.getImages()}
               price={product.getFormattedPrice()}
             />

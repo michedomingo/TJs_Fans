@@ -42,7 +42,7 @@ export default class Account extends Component {
             <Form onSubmit={this.handleSubmit}>
               <TextInput
                 label='Email Address'
-                placeholder='e.g. anna.ryan@gmail.com'
+                placeholder='What is your email?'
                 value={this.state.email}
                 onChange={this.handleEmailChange}
               />

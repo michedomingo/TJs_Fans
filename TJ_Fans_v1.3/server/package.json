@@ -4,7 +4,7 @@
   "description": "TJ's Fans v1.3",
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=production node --experimental-modules server.js -exec babel-node",
+    "start": "NODE_ENV=production JWT_SECRET node --experimental-modules server.js -exec babel-node",
     "dev": "nodemon server "
   },
   "author": "Michelle Domingo",

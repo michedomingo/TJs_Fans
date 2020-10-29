@@ -6,7 +6,7 @@ dotenv.config({ path: './config/.env' });
 
 export default jwt({
   secret: process.env.JWT_SECRET,
-  algorithms: ['RS256'],
+  algorithms: ['sha1', 'RS256', 'HS256'],
   credentialsRequired: false,
   getToken: (req) => {
     if (

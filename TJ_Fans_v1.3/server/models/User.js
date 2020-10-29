@@ -4,12 +4,6 @@ import pkg from 'mongoose';
 const { Schema } = pkg;
 
 const UserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true,
-    required: true,
-    max: 32,
-  },
   username: String,
   email: {
     type: String,

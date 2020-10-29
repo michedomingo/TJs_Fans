@@ -10,7 +10,7 @@ export default class ProductView extends Component {
   render() {
     return (
       <div className='ProductView'>
-        <h2>{this.props.product.getName()}</h2>
+        <h2>{this.props.product.getProductName()}</h2>
         <p>{this.props.product.getFormattedPrice()}</p>
         <PrimaryButton onClick={this.addToList}>☑️ Add to List</PrimaryButton>
         {this.props.product.getImages().map((src) => (
