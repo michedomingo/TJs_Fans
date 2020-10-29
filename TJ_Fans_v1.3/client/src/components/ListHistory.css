@@ -5,6 +5,11 @@
     border-bottom: 1px solid mediumaquamarine;
 }
 
+.ListHistoryNotes {
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
 .ListHistoryId {
     flex: 1;
     font-family: Monaco, monospace;

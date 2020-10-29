@@ -49,9 +49,14 @@ export default class List {
   getFormattedTotalPrice = () => `$${String(this.getTotalPrice() / 100)}`;
 
   /**
-   * @return {Object}
+   * @return {string}
    */
-  getListName = () => this._listName.title;
+  getListName = () => String(this._listName.title);
+
+  /**
+   * @return {string}
+   */
+  getListNotes = () => String(this._listName.notes);
 
   getData = () => ({
     _id: this._id,

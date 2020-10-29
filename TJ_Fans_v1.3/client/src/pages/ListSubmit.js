@@ -30,9 +30,10 @@ export default class ListSubmit extends Component {
       products: this.props.items,
       listName: this.state.listName,
     });
+    // console.log(data._listName.title);
     if (success) {
       this.setState({
-        successMessage: `List successfully placed! Your list id is: ${data.getId()}`,
+        successMessage: `${data.getListName()} has been saved!`,
         errorMessage: undefined,
         loading: false,
       });
