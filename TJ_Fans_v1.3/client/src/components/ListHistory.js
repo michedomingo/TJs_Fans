@@ -12,9 +12,6 @@ class ListHistory extends Component {
           <br />
           notes: {this.props.list.getListNotes()}
         </p>
-        {/* <p className='ListHistoryNotes'>
-          Notes: {this.props.list.getListNotes()}
-        </p> */}
         <div className='ListHistoryProducts'>
           {this.props.list.getProducts().map((product, index) => (
             <ProductCard
