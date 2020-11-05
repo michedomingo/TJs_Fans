@@ -1,0 +1,203 @@
+body {
+    font-family: "Montserrat";
+    text-align: center;
+}
+
+/* fonts */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Montserrat-Bold";
+}
+
+p {
+    color: #8f8f8f;
+}
+
+/* Headings */
+.big-heading {
+    font-family: "Montserrat-Black";
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 1.5;
+}
+
+.section-heading {
+    font-size: 3.5 rem;
+    line-height: 1.5;
+}
+
+/* Containers */
+.container-fluid{
+    padding: 7% 15%;
+}
+
+/* Sections */
+.colored-section {
+    background-color: #062f4f;
+    color: #ccc;
+}
+
+.white-section {
+    background-color: #ccc;
+}
+
+
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 2rem;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+    border-bottom: solid 1px #17a2b8;
+    opacity: 0.9;
+    /* background: #343a40;
+    color: #fff; */
+
+}
+
+.btn-dark,
+.bg-dark {
+  background: #343a40;
+  color: #fff;
+}
+
+.navbar ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.navbar a {
+    color: #fff;
+    padding: 0.45rem;
+    margin: 0 0.25rem;
+}
+
+.navbar a:hover {
+    color: #17a2b8;
+}
+
+  /* Intro Section */
+.landing {
+    position: relative;
+    background: url('./img/tjStore1.jpg') no-repeat center center/cover;
+    height: 100vh;
+}
+
+.landing-inner {
+    color: #fff;
+    height: 100%;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Overlay */
+.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+    
+/* Text Styles*/
+.x-large {
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.lead {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    }
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background: #f4f4f4;
+    color: #333;
+    padding: 0.4rem 1.3rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: opacity 0.2s ease-in;
+    outline: none;
+}
+
+.btn-primary {
+    background: #17a2b8;
+    color: #fff;
+}
+
+.btn-light {
+  background: #f4f4f4;
+  color: #333;
+}
+
+.btn:hover {
+    opacity: 0.8;
+    color: #b82601;
+}
+
+/* Features Section */
+#features {
+    position: relative;
+    z-index: 1;
+}
+
+.feature-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.feature-box {
+    padding: 5%;
+}
+
+.icon {
+    color: #b82601;
+    margin-bottom: 1rem;
+}
+
+.icon:hover {
+    color: #ff3b3f;
+}
+
+/* About section */
+#about {
+    padding: 100px;
+}
+
+.about-text {
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.about-column {
+    padding: 3% 2%;
+}
+
+@media (max-width: 1028px) {
+
+    #title {
+        text-align: center;
+    }
+
+    .title-image {
+        position: static;
+        transform: rotate(0);
+    }
+}
+
