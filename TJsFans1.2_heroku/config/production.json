@@ -1,0 +1,8 @@
+{
+    "MONGO_URI": "mongodb+srv://admin-michelle:Gelato1!@tjs-fans.dxwh2.mongodb.net/TJs_Fans?retryWrites=true&w=majority",
+    "NODE_ENV": "production",
+    "REACT_APP_API_URL": "http://localhost:5000",
+    "JWT_SECRET": "#IizMhfXUeLiw6K9%",
+    "PORT": "5000",
+    "CLIENT_URL": "http://localhost:3000"
+}

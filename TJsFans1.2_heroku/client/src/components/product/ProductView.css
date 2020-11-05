@@ -1,0 +1,13 @@
+.ProductView {
+    font-family: Monaco, monospace;
+    margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ProductView img {
+    height: 300px;
+    width: 600px;
+}
