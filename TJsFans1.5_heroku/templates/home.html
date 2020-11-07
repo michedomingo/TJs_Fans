@@ -1,0 +1,121 @@
+{%extends "layout.html"%}
+{%block content%}
+
+<!-- Intro Section -->
+
+<section class='landing'>
+    <!-- <img class="dark-overlay" src="img/tjStore1.jpg" alt="Trader Joe's store"> -->
+    <img class="dark-overlay" src="{{url_for('static',filename='img/tjStore1.jpg')}}" alt="Trader Joe's store">
+    <div class='dark-overlay'>
+      <div class='landing-inner'>
+        <h1 class='x-large'>TJ's Fans</h1>
+        <p class='lead'>
+          Fans of Trader Joe's - review products and create shopping lists!
+        </p>
+
+        <div class='buttons'>
+
+          <a href="https://fathomless-wildwood-80117.herokuapp.com/" class="btn btn-light btn-lg btn-block active" role="button" aria-pressed="true">Review TJ's products</a>
+
+          <!-- <button type="button" class="btn btn-secondary btn-lg btn-block">Block level button</button>
+          <button class='btn btn-light'>
+            Review TJ's products
+          </button> -->
+
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Feature Section -->
+
+  <section  class="white-section" id="features">
+
+    <div class="container-fluid">
+    
+      <div class="row">
+
+            <div class="feature-box col-lg-4">
+            <i class="icon fas fa-heart fa-4x"></i>
+            <h3 class="feature-title">Browse TJ's products</h3>
+            <p>Find awesome products to inspire your next meal.</p>
+            </div>
+
+
+
+            <div class="feature-box col-lg-4">
+            <i class="icon fas fa-bullseye fa-4x"></i>
+            <h3 class="feature-title">Review by category</h3>
+            <p>Browse products per category.</p>
+            </div>
+        
+            <div class="feature-box col-lg-4">
+            <i class="icon fas fa-check-circle fa-4x"></i>
+            <h3 class="feature-title">Create Shopping Lists</h3>
+            <p>Plan your TJ's shopping list and stay within budget.</p>
+            </div>
+        
+      </div>
+          
+    </div>
+
+      </section>
+
+<!-- About Section -->
+
+<section class="colored-section" id="about">
+
+    <h2 class="section-heading">About TJ's Fans</h2>
+    <p>The TJ’s Fans web app enables the ability to plan ahead of time and promotes efficient in-store shopping.</p>
+
+   <div class="row">
+
+   <div class="about-column col-lg-4 col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h3>Inspiration</h3>            
+        </div>
+            <div class="card-body">
+                <h2 class="about-text">This is a Portfolio Project for:</h2>
+                <p><a href="https://www.holbertonschool.com/">Holberton School</a></p><br>
+                <p>Trader Joe’s has been an essential lifeline, during Covid-19 times. Building an app to help with my budgeting while learning more about web development is a win win situation.</p>
+        </div>
+    </div>
+   </div> 
+
+   <div class="about-column col-lg-4 col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h3>Connect</h3>            
+        </div>
+            <div class="card-body">
+                <h2 class="about-text">Link to my socials:</h2>
+                <p><a href="https://www.linkedin.com/in/michedomingo/">LinkedIn</a></p>
+                <p><a href="https://github.com/michedomingo/TJs_Fans">Github</a></p>
+                <p><a href="https://twitter.com/micheflamingo">Twitter</a></p>
+                <p>Michelle Domingo is a Trader Joe's fanatic and lifelong student, currently tinkering with the MERN stack.</p>
+        </div>
+    </div>
+   </div>
+
+   <div class="about-column col-lg-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>Contribute</h3>            
+        </div>
+            <div class="card-body">
+                <h2 class="about-text">Project Repository:</h2>
+                <p><a href="https://github.com/michedomingo/TJs_Fans">Github</a></p><br>
+                <p>Repo is under construction and private to the public, at the moment.</p>
+                <p>Connect with project owner - Michelle Domingo - for more details.</p>
+        </div>
+    </div>
+   </div>
+    </div> 
+
+  </section>
+
+
+{%endblock%}
